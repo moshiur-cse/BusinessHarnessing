@@ -12,5 +12,6 @@ namespace CEGIS_Project_ProgressApp.Models
         public int Id { get; set; }           
         public virtual List<ProjectInfo> ProjectInfos { get; set; }
         public string Progress { get; set; }
+        public string Progress1 { get; set; }
     }
 }
