@@ -60,10 +60,6 @@ namespace CEGIS_Project_ProgressApp.Models
         public string UserInitial { get; set; }
         public virtual List<UpdateHistory> UpdateHistorys { get; set; }
 
-        public virtual List<UpdateHistory> UpdateHistorys1 { get; set; }
-    
-
-
 
     }
 }
