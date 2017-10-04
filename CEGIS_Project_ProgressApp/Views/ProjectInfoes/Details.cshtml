@@ -1,0 +1,120 @@
+﻿@model CEGIS_Project_ProgressApp.Models.ProjectInfo
+
+@*@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="text-align: center">Details Information </h2>*@
+
+<div class="row">
+    <div class="col-md-12">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel">Details Information</h4>
+    </div>
+        <div class="modal-body">
+
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Division.ShortName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Division.FullName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProjectName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ProjectName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Client)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Client)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FocalPerson)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FocalPerson)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgressType.Progress)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ProgressType.Progress)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ContactValue)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ContactValue)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProjectType.TypeName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ProjectType.TypeName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Probility)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Probility)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Duration)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Duration)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ExpectedDate.Dates)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ExpectedDate.Dates)
+                </dd>
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.User)*@
+                    @Html.LabelFor(model => model.DateTimes, "Last Updated Person")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UserInitial)
+                </dd>
+                @*<dt>
+                    @Html.LabelFor(model => model.Date, "Last Updated Date")
+                   
+                </dt>*@
+
+                @*<dd>
+                    @Html.DisplayFor(model => model.Date)
+                </dd>*@
+            </dl>
+        </div>
+        <div class="modal-footer">
+           
+                @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+                @*@Html.ActionLink("Back to List", "Index")*@
+           
+            @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+        </div>
+    </div>
+</div>

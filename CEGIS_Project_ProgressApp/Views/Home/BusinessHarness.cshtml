@@ -1,0 +1,29 @@
+﻿@using CEGIS_Project_ProgressApp.Models
+@{
+    ViewBag.Title = "BusinessHarness";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Actual Business Harnessing</h2>
+
+<table class="table" id="myTable">
+    <thead>
+    <tr>
+        <th>Division</th>
+        <th>Budget (BDT)</th>
+        <th>Harness (BDT)</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (BusinessHarnessing aData in ViewBag.a)
+        {
+            <tr>
+                <td>@aData.Division</td>
+                <td>@aData.Budget</td>
+                <td>@aData.Harness</td>
+            </tr>           
+        }
+    </tbody>
+</table>

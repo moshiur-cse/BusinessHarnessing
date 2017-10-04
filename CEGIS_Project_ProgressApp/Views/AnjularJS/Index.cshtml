@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-app="MyApp">
+    <div ng-controller="MyController">
+        <h2>{{infoName}}</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Division</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in items">
+                    <td>{{item.ProjectName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script>
+        var myApp = angular.module('MyApp', []);
+        var information = {
+            Name: "All Information",
+            items: []
+        };
+
+        myApp.config(['$qProvider', function ($qProvider) {   // to solove angular js 1.6 version error
+            $qProvider.errorOnUnhandledRejections(false);
+        }]);
+
+        //var routeSegmentProvider = null;
+        //myApp.config(["$routeSegmentProvider", function ($routeSegmentProvider) {
+        //    routeSegmentProvider = $routeSegmentProvider;
+        //}]);
+
+        myApp.run(function($http) {
+            $http.get('@Url.Action("GetAllInfos", "AnjularJS")').then(function (data) {
+                angular.forEach(data, function (event, key) {
+                    information.items.push({ ProjectName: event.ProjectName, Division: event.DivisionId });
+                });
+            });
+        });
+
+        myApp.controller('MyController', function ($scope) {
+            $scope.infoName = information.Name;
+            $scope.items = information.items;
+        });
+</script>
+
+}

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Upcoming Projects on Expected Date</h2>
+<hr/>
+<div class="row"> 
+    @using (Html.BeginForm("Details","DateWiseProject", FormMethod.Get, new { target = "_blank" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-7">
+            <div class="col-md-2">
+                <label>Probility:</label>
+            </div>
+            <div class="col-md-3">
+                <select id="probility" name="id" class="form-control">
+                    <option value="0">All Probility</option>
+                    <option value="10">Above10%</option>
+                    <option value="20">Above 20%</option>
+                    <option value="30">Above 30%</option>
+                    <option value="40">Above 40%</option>
+                    <option value="50">Above 50%</option>
+                    <option value="60">Above 60%</option>
+                    <option value="70">Above 70%</option>
+                    <option value="80">Above 80%</option>
+                    <option value="90">Above 90%</option>
+                </select>
+            </div>
+            <div class="col-md-2" style="float: left">
+                <input type="submit" value="Report" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="col-md-5"></div>
+    }
+</div>

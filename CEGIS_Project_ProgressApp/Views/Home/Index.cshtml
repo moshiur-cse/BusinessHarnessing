@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="row">
+    @*<h1 style="text-align: center;color: #008000">Center for Environmental and Geographic Information Services(CEGIS)</h1>
+        <h1 style="text-align: center;color: #008000">Project Details</h1>*@
+    <div class="col-md-4" style="text-align: center;">
+        <div style="background-color: #D9EDF7; -webkit-border-radius: 10px">
+            @if (ViewBag.userType == 3 || ViewBag.userType==4)
+            {
+                <h3 style="padding: 40px;color:#dddddd">Upcomming Project</h3>
+            }
+            else
+            {
+                <h3 style="padding: 40px;">@Html.ActionLink("Upcomming Project", "Index", "ProjectInfoes")</h3> // new AjaxOptions { Confirm = "Are you sure!!!" },OnSuccess = "Loaded", LoadingElementId = "busy-indicator", UpdateTargetId = "" ,HttpMethod = "Post", OnSuccess = "",, Confirm = "Are you sure!!!"
+            }
+            
+        </div>
+    </div>
+    <div class="col-md-4" style="text-align: center;">
+        <div style="background-color: #F2DEDE; -webkit-border-radius: 10px">
+            @if (ViewBag.userType == 2 || ViewBag.userType == 4)
+            {
+                <h3 style="padding: 40px;color:#dddddd">Progress Monitoring</h3>
+            }
+            else
+            {
+                <h3 style="padding: 40px;">@Html.ActionLink("Progress Monitoring", "Index", "ProjectInfoes")</h3>
+            }
+        </div>
+    </div>
+      
+    
+    <div class="col-md-4" style="text-align: center">
+        <div style="background-color: #DFF0D8; -webkit-border-radius: 10px">
+            
+            @if (ViewBag.userType == 4 || User.IsInRole("Admin"))
+            {
+                <h3 style="padding: 40px;">@Html.ActionLink("Report Generation", "Report", "Home")</h3>                
+            }
+            else
+            {
+                <h3 style="padding: 40px;color:#dddddd">Report Generation</h3>
+            }
+        </div>
+    </div>
+
+</div>
+@*<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-primary text-center no-boder">
+            <div class="panel-body yellow">
+                <i class="fa fa-bar-chart-o fa-3x"></i>
+                <h3>
+                    <span id="MainContent_LabelOnGoing">0</span>
+                   @Html.DisplayNameFor(model => model.Count())
+                </h3>
+            </div>
+            <div class="panel-footer">
+                <span class="panel-eyecandy-title">On Going Projects </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-primary text-center no-boder">
+            <div class="panel-body yellow">
+                <i class="fa fa-bar-chart-o fa-3x"></i>
+                <h3>
+                    <span id="MainContent_LabelOnGoing">0</span>
+                </h3>
+            </div>
+            <div class="panel-footer">
+                <span class="panel-eyecandy-title">Upcomming Project</pan>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-primary text-center no-boder">
+            <div class="panel-body yellow">
+                <i class="fa fa-bar-chart-o fa-3x"></i>
+                <h3>
+                    <span id="MainContent_LabelOnGoing">0</span>
+                </h3>
+            </div>
+            <div class="panel-footer">
+                <span class="panel-eyecandy-title">Completed Projects</span>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+@section scripts
+{
+   
+@*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+ 
+}
+

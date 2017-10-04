@@ -1,0 +1,280 @@
+﻿@model IEnumerable<CEGIS_Project_ProgressApp.Models.ProjectInfo>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section style
+{
+    <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-dialog.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/buttons.jqueryui.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.jqueryui.css" rel="stylesheet" />
+}
+
+<h3>
+    @Html.ActionLink("Add New Project", "Create")
+</h3>
+<table class="display" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Division.ShortName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FocalPerson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgressType.Progress)
+            </th>
+            @if (ViewBag.UserTypes != 3)
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.ContactValue)
+                </th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectType.TypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Probility)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedDate.Dates)
+            </th>
+            <th><label>Action</label></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="show_@item.Id">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Division.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FocalPerson)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProgressType.Progress)
+                </td>
+                @if (ViewBag.UserTypes != 3)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactValue)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectType.TypeName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Probility)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedDate.Dates)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { onclick = "edit_function(item.Id)" })*@
+
+                    <a href="javascript:void(0);" class="anchorEdit" data-id="@item.Id">Edit |</a>
+
+                    @*<input type="button" value="edit" class="btn_edit1 btn btn-default" id="@item.Id" />*@
+
+                    @*@Html.ActionLink("Details", "Details", new {id = item.Id})*@
+
+                    <a href="javascript:void(0);" class="anchorDetail" data-id="@item.Id">Details |</a>
+
+                    @if (ViewBag.UserTypes != 2)
+                    {
+                        //@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are You Sure to Delete?')" })
+
+                        <a href="javascript:void(0);" class="anchorDelete" data-id="@item.Id">Delete</a>
+                    }
+                </td>
+            </tr>
+            @*</tbody>
+                        </table>
+                    </td>
+                </tr>*@
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/bootstrap-dialog.js"></script>
+
+    <script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DataTables/buttons.flash.min.js"></script>
+
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.jqueryui.js"></script>
+
+    <script src="~/Scripts/DataTables/buttons.jqueryui.min.js"></script>
+    <script src="~/Scripts/DataTables/pdfmake.min.js"></script>
+
+    <script src="~/Scripts/DataTables/jszip.min.js"></script>
+    <script src="~/Scripts/DataTables/vfs_fonts.js"></script>
+    <script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DataTables/buttons.print.min.js"></script>
+    <script src="~/Scripts/DataTables/buttons.colVis.js"></script>
+
+    <script>
+        $(function (){
+
+            $('#myTable').DataTable({
+                dom: 'Bfrtip',
+                lengthChange: false,
+                //buttons: ['csv', 'excel', 'pdf', 'print', 'colvis']
+                buttons: [ {
+                   extend: 'pdf',
+                   footer: false,
+                   exportOptions: {
+                   columns: [0,1, 2, 3, 4, 5, 6, 7,8,9]
+                   }
+                },
+               //{
+               //    extend: 'csv',
+               //    footer: false
+
+               //},
+               {
+                   extend: 'excel',
+                   footer: false,
+                   exportOptions: {
+                   columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                   }
+               },
+               
+               {
+                  extend: 'print',
+                  footer: false,
+                  exportOptions: {
+                  columns: [0,1, 2, 3, 4, 5, 6, 7, 8, 9]
+                  }
+               },
+               {
+                   extend: 'colvis',
+                   footer: false
+               }
+                    ]
+            });
+        });
+   
+            $(".anchorDetail").click(function () {
+                //debugger;
+                var $buttonClicked = $(this);
+
+                var id = $buttonClicked.attr('data-id');
+                var options = { "backdrop": "static", keyboard: true };
+
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("Details", "ProjectInfoes")',
+                    contentType: "application/json; charset=utf-8",
+                    data: { "Id": id },
+                    datatype: "json",
+                    success: function (data) {
+                        debugger;
+                        $('#myModalContent').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            });
+            $("#closbtn").click(function () {
+                $('#myModal').modal('hide');
+            });
+     
+
+       
+            $(".anchorEdit").click(function () {
+                debugger;
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var options = { "backdrop": "static", keyboard: true };
+
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("Edit", "ProjectInfoes")',
+                    contentType: "application/json; charset=utf-8",
+                    data: { "Id": id },
+                    datatype: "json",
+                    success: function (data) {
+                        debugger;
+                        $('#myModalContent').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            });
+            $("#closbtn").click(function () {
+                $('#myModal').modal('hide');
+            });
+       
+    
+        
+            $(".anchorDelete").click(function () {
+                debugger;
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var options = { "backdrop": "static", keyboard: true };
+
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("Delete", "ProjectInfoes")',
+                    contentType: "application/json; charset=utf-8",
+                    data: { "Id": id },
+                    datatype: "json",
+                    success: function (data) {
+                        debugger;
+                        $('#myModalContent').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+                        $('#myModal').draggable();
+                        //$('#myModal').toggle();
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            });
+            $("#closbtn").click(function () {
+                $('#myModal').modal('hide');
+            });
+       
+    </script>
+}

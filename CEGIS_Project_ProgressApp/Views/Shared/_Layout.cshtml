@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @{
+        ViewBag.Color = "#254377";  //#254377  1.#0E5857
+                                    //ViewBag.Image = "../images/background-images.jpg";
+    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - CEGIS Project Progress</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("style", required: false)
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    @*if(User.Identity.Name=="SIH")*@
+
+
+    <style>
+
+        .footer_part {
+            margin-top: 10px;
+            text-align: center;
+            background: @ViewBag.Color; /*#02393F*/
+            padding: 10px;
+            width: 100%;
+            float: left;
+        }
+
+        input, select, textarea {
+            max-width: 100% !important;
+        }
+        
+
+    </style>
+</head>
+<body>
+    @*<select id="Color">
+            <option value="#254377">Red</option>
+            <option value="#0E5857">Black</option>
+        </select>*@
+
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: @ViewBag.Color;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Project ProgressType", "Index", "ProjectInfoes", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        @*<a href="@Url.Action("Index", "Home", null, null, "~/images/CEGIS_logo.png")"/>*@
+                        <img src="~/images/CEGIS_logo.png" style="height: 50px; padding: 5px" />
+
+                    </li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink("Dashboard", "Index", "Home")
+                        </li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="dropdown" style="padding: 10px">
+                            <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: @ViewBag.Color">
+                                Admin Panel
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Add New User", "Register", "Account")</li>
+                                <li>@Html.ActionLink("Add ProgressType", "Index", "ProgressTypes")</li>
+                                <li>@Html.ActionLink("Add ProjectType", "Index", "ProjectTypes")</li>
+                                <li>@Html.ActionLink("Add Division", "Index", "Divisions")</li>
+                                <li>@Html.ActionLink("Add Expected Date", "Index", "ExpectedDates")</li>
+                            </ul>
+                        </li>
+                    }                    
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+
+        </div>
+    </div>
+    <h2 style="text-align: center; color: Black">Business Harnessing Monitoring Tools</h2>
+    <hr />
+    <div class="container body-content">
+        <div class="loading">
+            <div class="pageloading-body">
+                <div class="loading-indicator">
+                    @*<img src="http://sampsonresume.com/labs/pIkfp.gif" />*@
+                    <p>Please wait</p>
+                </div>
+            </div>
+        </div>
+        <div id='myModal' class='modal'>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div id='myModalContent'></div>
+                </div>
+            </div>
+
+        </div>
+        @RenderBody()
+        <hr />
+        <footer class="footer_part">
+            <p style="color: white">Copyright @DateTime.Now.Year - All Rights Reserved By CEGIS</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/angular")*@
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.loading').hide();
+            //$("#Color").on('change', function () {
+
+            //});
+        });
+    </script>
+</body>
+</html>
