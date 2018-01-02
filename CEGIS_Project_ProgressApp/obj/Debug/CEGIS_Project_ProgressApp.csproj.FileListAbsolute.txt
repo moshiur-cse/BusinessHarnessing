@@ -445,7 +445,7 @@ D:\BusinessHarnessing\CEGIS_Project_ProgressApp\bin\Microsoft.Owin.Security.Goog
 D:\BusinessHarnessing\CEGIS_Project_ProgressApp\bin\Microsoft.Owin.Security.Twitter.xml
 D:\BusinessHarnessing\CEGIS_Project_ProgressApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\BusinessHarnessing\CEGIS_Project_ProgressApp\obj\Debug\CEGIS_Project_ProgressApp.csprojResolveAssemblyReference.cache
-D:\BusinessHarnessing\CEGIS_Project_ProgressApp\obj\Debug\CEGIS_Project_ProgressApp.Migrations.version1.resources
-D:\BusinessHarnessing\CEGIS_Project_ProgressApp\obj\Debug\CEGIS_Project_ProgressApp.csproj.GenerateResource.Cache
 D:\BusinessHarnessing\CEGIS_Project_ProgressApp\obj\Debug\CEGIS_Project_ProgressApp.dll
 D:\BusinessHarnessing\CEGIS_Project_ProgressApp\obj\Debug\CEGIS_Project_ProgressApp.pdb
+D:\BusinessHarnessing\CEGIS_Project_ProgressApp\obj\Debug\CEGIS_Project_ProgressApp.Migrations.Version1.resources
+D:\BusinessHarnessing\CEGIS_Project_ProgressApp\obj\Debug\CEGIS_Project_ProgressApp.csproj.GenerateResource.Cache

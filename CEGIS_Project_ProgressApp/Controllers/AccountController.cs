@@ -60,7 +60,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
         public ActionResult Login(string returnUrl)
         {
 
-            ViewBag.AllDivision = db.Divisions.ToList();
+            ViewBag.AllDivision = db.LookUpDivisions.ToList();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -108,7 +108,6 @@ namespace CEGIS_Project_ProgressApp.Controllers
             }
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
-
         //
         // POST: /Account/VerifyCode
         [HttpPost]
@@ -147,7 +146,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
             {                
                     return RedirectToAction("Login", "Account");                
             }
-            ViewBag.Division=db.Divisions.ToList();
+            ViewBag.Division=db.LookUpDivisions.ToList();
 
             return View();
         }
@@ -159,7 +158,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            ViewBag.Division = db.Divisions.ToList();
+            ViewBag.Division = db.LookUpDivisions.ToList();
 
             if (ModelState.IsValid)
             {

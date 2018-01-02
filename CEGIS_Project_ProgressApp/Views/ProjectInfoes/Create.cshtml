@@ -25,9 +25,9 @@
                     @*@Html.DropDownList("DivisionId", (SelectList)ViewBag.DivId, htmlAttributes: new { @class = "form-control" })*@
 
                     <select id="DivisionId" name="DivisionId" class="form-control">
-                        @foreach (Division option in ViewBag.AllDivision)
+                        @foreach (LookUpDivision option in ViewBag.AllDivision)
                         {
-                            <option value="@option.id" @(option.id==ViewBag.DivId ? "selected='selected'" : "")>@option.FullName</option>
+                            <option value="@option.DivisionId" @(option.DivisionId == ViewBag.DivId ? "selected='selected'" : "")>@option.DivFullName</option>
                         }
                     </select>
 

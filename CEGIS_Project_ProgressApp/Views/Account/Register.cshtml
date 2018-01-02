@@ -29,9 +29,9 @@
         @Html.LabelFor(m => m.DivisionId, "Division", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <select id="DivisionId" name="DivisionId" class="form-control">
-                @foreach (Division data in ViewBag.Division)
+                @foreach (LookUpDivision data in ViewBag.Division)
                 {
-                    <option value="@data.id">@data.FullName</option>
+                    <option value="@data.DivisionId">@data.DivFullName</option>
                 }
             </select>
             @Html.ValidationMessageFor(m => m.DivisionId, "", new {@class = "text-danger"})

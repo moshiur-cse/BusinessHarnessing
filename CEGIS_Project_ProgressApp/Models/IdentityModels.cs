@@ -10,9 +10,9 @@ namespace CEGIS_Project_ProgressApp.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Initial { get; set; }
+        public string FirstName { get; set;}
+        public string LastName { get; set;}
+        public string Initial { get; set;}
         public int UserType { get; set; }
         public int DivisionId { get; set; }
         //[ForeignKey("DivisionId")]        
@@ -32,8 +32,9 @@ namespace CEGIS_Project_ProgressApp.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+
         public DbSet<ProjectInfo> ProjectInfos { get; set; }
-        public DbSet<Division> Divisions { get; set;}        
+        public DbSet<LookUpDivision> LookUpDivisions { get; set;}        
         public DbSet<ProgressType> ProgressTypes { get; set; }
         public DbSet<ProjectType> ProjectTypes { get; set; }
         public DbSet<ExpectedDate> ExpectedDates { get; set; }

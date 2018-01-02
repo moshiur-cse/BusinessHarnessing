@@ -17,7 +17,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
         // GET: Divisions
         public ActionResult Index()
         {
-            return View(db.Divisions.ToList());
+            return View(db.LookUpDivisions.ToList());
         }
 
         // GET: Divisions/Details/5
@@ -27,7 +27,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Division division = db.Divisions.Find(id);
+            LookUpDivision division = db.LookUpDivisions.Find(id);
             if (division == null)
             {
                 return HttpNotFound();
@@ -46,11 +46,11 @@ namespace CEGIS_Project_ProgressApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,ShortName,FullName")] Division division)
+        public ActionResult Create([Bind(Include = "DivisionId,ShortName,FullName")] LookUpDivision division)
         {
             if (ModelState.IsValid)
             {
-                db.Divisions.Add(division);
+                db.LookUpDivisions.Add(division);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Division division = db.Divisions.Find(id);
+            LookUpDivision division = db.LookUpDivisions.Find(id);
             if (division == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,ShortName,FullName")] Division division)
+        public ActionResult Edit([Bind(Include = "DivisionId,ShortName,FullName")] LookUpDivision division)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Division division = db.Divisions.Find(id);
+            LookUpDivision division = db.LookUpDivisions.Find(id);
             if (division == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace CEGIS_Project_ProgressApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Division division = db.Divisions.Find(id);
-            db.Divisions.Remove(division);
+            LookUpDivision division = db.LookUpDivisions.Find(id);
+            db.LookUpDivisions.Remove(division);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

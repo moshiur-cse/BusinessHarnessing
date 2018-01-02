@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CEGIS_Project_ProgressApp.Models.Division>
+﻿@model IEnumerable<CEGIS_Project_ProgressApp.Models.LookUpDivision>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ShortName)
+            @Html.DisplayNameFor(model => model.DivShortName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FullName)
+            @Html.DisplayNameFor(model => model.DivFullName)
         </th>
         <th></th>
     </tr>
@@ -24,14 +24,14 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ShortName)
+            @Html.DisplayFor(modelItem => item.DivShortName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FullName)
+            @Html.DisplayFor(modelItem => item.DivFullName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.DivisionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DivisionId }) |
             @*@Html.ActionLink("Delete", "Delete", new { id=item.id })*@
         </td>
     </tr>

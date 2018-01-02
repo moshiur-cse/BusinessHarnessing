@@ -104,7 +104,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
             ViewBag.UserTypes = currentUser.UserType;
             int dId = currentUser.DivisionId;
             ViewBag.DivId = currentUser.DivisionId;
-            ViewBag.AllDivision = db.Divisions.Where(a => a.id == dId).ToList();
+            ViewBag.AllDivision = db.LookUpDivisions.Where(a => a.DivisionId == dId).ToList();
 
             //string email = currentUser.Email;
             if (!Request.IsAuthenticated)
@@ -112,7 +112,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            ViewBag.DivisionId = new SelectList(db.Divisions, "id", "FullName");
+            ViewBag.DivisionId = new SelectList(db.LookUpDivisions, "DivisionId", "DivFullName");
             ViewBag.ExpectedDateId = new SelectList(db.ExpectedDates, "Id", "Dates");
             ViewBag.ProgressTypeId = new SelectList(db.ProgressTypes, "Id", "Progress");
             ViewBag.ProjectTypeId = new SelectList(db.ProjectTypes, "Id", "TypeName");
@@ -134,8 +134,8 @@ namespace CEGIS_Project_ProgressApp.Controllers
 
 
             int dId = currentUser.DivisionId;
-            var divName = db.Divisions.Find(dId);
-            string DivisionName = divName.FullName;
+            var divName = db.LookUpDivisions.Find(dId);
+            string DivisionName = divName.DivFullName;
 
             if (ModelState.IsValid)
             {
@@ -193,7 +193,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DivisionId = new SelectList(db.Divisions, "id", "FullName", projectInfo.DivisionId);
+            ViewBag.DivisionId = new SelectList(db.LookUpDivisions, "DivisionId", "DivFullName", projectInfo.DivisionId);
             ViewBag.ExpectedDateId = new SelectList(db.ExpectedDates, "Id", "Dates", projectInfo.ExpectedDateId);
             ViewBag.ProgressTypeId = new SelectList(db.ProgressTypes, "Id", "Progress", projectInfo.ProgressTypeId);
             ViewBag.ProjectTypeId = new SelectList(db.ProjectTypes, "Id", "TypeName", projectInfo.ProjectTypeId);
@@ -218,7 +218,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DivisionId = new SelectList(db.Divisions, "id", "FullName", projectInfo.DivisionId);
+            ViewBag.DivisionId = new SelectList(db.LookUpDivisions, "DivisionId", "DivFullName", projectInfo.DivisionId);
             ViewBag.ExpectedDateId = new SelectList(db.ExpectedDates, "Id", "Dates", projectInfo.ExpectedDateId);
             ViewBag.ProgressTypeId = new SelectList(db.ProgressTypes, "Id", "Progress", projectInfo.ProgressTypeId);
             ViewBag.ProjectTypeId = new SelectList(db.ProjectTypes, "Id", "TypeName", projectInfo.ProjectTypeId);
@@ -248,7 +248,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
 
                 return RedirectToAction("Index");
             }
-            ViewBag.DivisionId = new SelectList(db.Divisions, "id", "FullName", projectInfo.DivisionId);
+            ViewBag.DivisionId = new SelectList(db.LookUpDivisions, "DivisionId", "DivFullName", projectInfo.DivisionId);
             ViewBag.ExpectedDateId = new SelectList(db.ExpectedDates, "Id", "Dates", projectInfo.ExpectedDateId);
             ViewBag.ProgressTypeId = new SelectList(db.ProgressTypes, "Id", "Progress", projectInfo.ProgressTypeId);
             ViewBag.ProjectTypeId = new SelectList(db.ProjectTypes, "Id", "TypeName", projectInfo.ProjectTypeId);

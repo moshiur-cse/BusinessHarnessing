@@ -59,7 +59,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
             crp.SetDataSource(db.ProjectInfos.Select(p => new
             {
                 Project = p.ProjectName.ToString(),
-                Division = p.Division.ShortName.ToString(),
+                Division = p.Division.DivShortName.ToString(),
                 Client = p.ProjectType.TypeName.ToString(),
                 FocalPerson = p.FocalPerson.ToString(),
                 Progress = p.ProgressType.Progress.ToString(),
@@ -95,7 +95,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
             crp.SetDataSource(db.ProjectInfos.Select(p => new
             {
                 Project = p.ProjectName.ToString(),
-                Division = p.Division.ShortName.ToString(),
+                Division = p.Division.DivShortName.ToString(),
                 Client = p.ProjectType.TypeName.ToString(),
                 FocalPerson = p.FocalPerson.ToString(),
                 Progress = p.ProgressType.Progress.ToString(),
@@ -123,13 +123,13 @@ namespace CEGIS_Project_ProgressApp.Controllers
             }
             //        //SELECT DivisionId, ExpectedDateId, COUNT(ProjectName), SUM(ContactValue) FROM `projectinfoes`WHERE ExpectedDateId = 1 GROUP BY DivisionId;
             var allInfo = db.ProjectInfos.ToList();
-            var allDiv = db.Divisions.ToList();
+            var allDiv = db.LookUpDivisions.ToList();
 
             var totalHarness = (from p in allInfo
-                                join dv in allDiv on p.DivisionId equals dv.id
+                                join dv in allDiv on p.DivisionId equals dv.DivisionId
                                 where p.ExpectedDateId==4
                                 group p by new {Divid = p.DivisionId } into g
-                                select new {DivisionName = g.First().Division.ShortName,
+                                select new {DivisionName = g.First().Division.DivShortName,
                                              Total = g.Sum(p => p.ContactValue),
                                              Count=g.Count()
                                            }).ToList();
@@ -141,7 +141,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
             crp.SetDataSource(db.ProjectInfos.Where(p=>p.Probility>= 0).Select(p => new
             {
                 Project = p.ProjectName.ToString(),
-                Division = p.Division.ShortName.ToString(),
+                Division = p.Division.DivShortName.ToString(),
                 Client = p.ProjectType.TypeName.ToString(),
                 FocalPerson = p.FocalPerson.ToString(),
                 Progress = p.ProgressType.Progress.ToString(),
@@ -170,18 +170,18 @@ namespace CEGIS_Project_ProgressApp.Controllers
             List<BusinessHarnessing> aList = new List<BusinessHarnessing>();
             BusinessHarnessing aBusinessHarness;
             var allInfo = db.ProjectInfos.ToList();
-            var allDiv = db.Divisions.ToList();
+            var allDiv = db.LookUpDivisions.ToList();
 
             var totalHarness = (from p in allInfo
-                                join dv in allDiv on p.DivisionId equals dv.id
+                                join dv in allDiv on p.DivisionId equals dv.DivisionId
                                 where p.ProgressTypeId == 11
-                                group p by new { DivName = dv.ShortName, Divid = p.DivisionId } into g
-                                select new { KeyValue = g.Key, DivisionName = g.First().Division.ShortName, Total = g.Sum(p => p.ContactValue) }).ToList();
+                                group p by new { DivName = dv.DivShortName, Divid = p.DivisionId } into g
+                                select new { KeyValue = g.Key, DivisionName = g.First().Division.DivShortName, Total = g.Sum(p => p.ContactValue) }).ToList();
 
             var total = (from p in allInfo
-                         join dv in allDiv on p.DivisionId equals dv.id
-                         group p by new { DivName = dv.ShortName, Divid = p.DivisionId } into g
-                         select new { KeyValue = g.Key, DivisionName = g.First().Division.ShortName, Total = g.Sum(p => p.ContactValue) }).ToList();
+                         join dv in allDiv on p.DivisionId equals dv.DivisionId
+                         group p by new { DivName = dv.DivShortName, Divid = p.DivisionId } into g
+                         select new { KeyValue = g.Key, DivisionName = g.First().Division.DivShortName, Total = g.Sum(p => p.ContactValue) }).ToList();
 
             var infos = (from t in total
                          join h in totalHarness on t.KeyValue equals h.KeyValue into sub

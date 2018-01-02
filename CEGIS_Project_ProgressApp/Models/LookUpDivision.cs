@@ -1,24 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace CEGIS_Project_ProgressApp.Models
 {
-    public class Division
+    public class LookUpDivision
     {
-        
-        public int id { get; set; }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int DivisionId { get; set; }
         [DisplayName("Full Name")]
         [Column(TypeName = "varchar")]
-        public string FullName { get; set; }
+
+        public string DivFullName { get; set; }
 
         [DisplayName("Division")]
         [Column(TypeName = "varchar")]
-        public string ShortName { get; set; }
+        public string DivShortName { get; set; }
         public virtual List<ProjectInfo> ProjectInfos { get; set; }
     }
 }
+
+

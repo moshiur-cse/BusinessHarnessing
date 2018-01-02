@@ -24,49 +24,49 @@ namespace CEGIS_Project_ProgressApp.Controllers
         public ActionResult Details(int? id)
         {
             var allInfo = db.ProjectInfos.ToList();
-            var allDiv = db.Divisions.ToList();
+            var allDiv = db.LookUpDivisions.ToList();
             var q1Info = (from p in allInfo
-                                join dv in allDiv on p.DivisionId equals dv.id
+                                join dv in allDiv on p.DivisionId equals dv.DivisionId
                                 where (p.ExpectedDateId == 3 && p.ProgressTypeId!=11)
-                                group p by new { DivName = dv.ShortName, Divid = p.DivisionId } into g
+                                group p by new { DivName = dv.DivShortName, Divid = p.DivisionId } into g
                                 select new
                                 {
                                     KeyValue = g.Key,
-                                    DivisionName = g.First().Division.ShortName,
+                                    DivisionName = g.First().Division.DivShortName,
                                     Q1Total = g.Sum(p => p.ContactValue),
                                     Q1Count = g.Count()
                                 }).ToList();
             var q2Info = (from p in allInfo
-                      join dv in allDiv on p.DivisionId equals dv.id
-                      where (p.ExpectedDateId == 4 && p.ProgressTypeId != 11)
-                      group p by new { DivName = dv.ShortName, Divid = p.DivisionId } into g
+                      join dv in allDiv on p.DivisionId equals dv.DivisionId
+                          where (p.ExpectedDateId == 4 && p.ProgressTypeId != 11)
+                      group p by new { DivName = dv.DivShortName, Divid = p.DivisionId } into g
                       select new
                       {
                           KeyValue = g.Key,
-                          DivisionName = g.First().Division.ShortName,
+                          DivisionName = g.First().Division.DivShortName,
                           Q2Total = g.Sum(p => p.ContactValue),
                           Q2Count = g.Count()
                       }).ToList();
             //var aaa = q1Info.Concat(q2Info);  https://stackoverflow.com/questions/5489987/linq-full-outer-join
             var q3Info = (from p in allInfo
-                      join dv in allDiv on p.DivisionId equals dv.id
-                      where (p.ExpectedDateId == 1 && p.ProgressTypeId != 11)
-                      group p by new { DivName = dv.ShortName, Divid = p.DivisionId } into g
+                      join dv in allDiv on p.DivisionId equals dv.DivisionId
+                          where (p.ExpectedDateId == 1 && p.ProgressTypeId != 11)
+                      group p by new { DivName = dv.DivShortName, Divid = p.DivisionId } into g
                       select new
                       {
                           KeyValue = g.Key,
-                          DivisionName = g.First().Division.ShortName,
+                          DivisionName = g.First().Division.DivShortName,
                           Q3Total = g.Sum(p => p.ContactValue),
                           Q3Count = g.Count()
                       }).ToList();
             var q4Info = (from p in allInfo
-                      join dv in allDiv on p.DivisionId equals dv.id
-                      where (p.ExpectedDateId == 2 && p.ProgressTypeId != 11)
-                      group p by new { DivName = dv.ShortName, Divid = p.DivisionId } into g
+                      join dv in allDiv on p.DivisionId equals dv.DivisionId
+                          where (p.ExpectedDateId == 2 && p.ProgressTypeId != 11)
+                      group p by new { DivName = dv.DivShortName, Divid = p.DivisionId } into g
                       select new
                       {
                           KeyValue = g.Key,
-                          DivisionName = g.First().Division.ShortName,
+                          DivisionName = g.First().Division.DivShortName,
                           Q4Total = g.Sum(p => p.ContactValue),
                           Q4Count = g.Count()
                       }).ToList();
@@ -123,7 +123,7 @@ namespace CEGIS_Project_ProgressApp.Controllers
             crp.SetDataSource(db.ProjectInfos.Where(p => p.Probility >= id && p.ProgressTypeId!=11).Select(p => new
             {
                 Project = p.ProjectName.ToString(),
-                Division = p.Division.ShortName.ToString(),
+                Division = p.Division.DivShortName.ToString(),
                 Client = p.ProjectType.TypeName.ToString(),
                 FocalPerson = p.FocalPerson.ToString(),
                 Progress = p.ProgressType.Progress.ToString(),

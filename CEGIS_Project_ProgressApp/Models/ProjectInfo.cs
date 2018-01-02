@@ -21,8 +21,8 @@ namespace CEGIS_Project_ProgressApp.Models
         [DisplayName("Division")]
         [Required(ErrorMessage = "Select Division")]
         public int DivisionId { get; set; }
-        //[ForeignKey("DivisionId")]        
-        public virtual Division Division { get; set; }
+        [ForeignKey("DivisionId")]        
+        public virtual LookUpDivision Division { get; set; }
 
         [Column(TypeName = "varchar")]
         //[Required(ErrorMessage = "Enter Project Name")]

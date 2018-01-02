@@ -3,19 +3,18 @@ namespace CEGIS_Project_ProgressApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class version1 : DbMigration
+    public partial class Version1 : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Divisions",
+                "dbo.ExpectedDates",
                 c => new
                     {
-                        id = c.Int(nullable: false, identity: true),
-                        FullName = c.String(maxLength: 8000, unicode: false),
-                        ShortName = c.String(maxLength: 8000, unicode: false),
+                        Id = c.Int(nullable: false, identity: true),
+                        Dates = c.String(maxLength: 8000, unicode: false),
                     })
-                .PrimaryKey(t => t.id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.ProjectInfoes",
@@ -36,7 +35,7 @@ namespace CEGIS_Project_ProgressApp.Migrations
                         UserInitial = c.String(maxLength: 8000, unicode: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Divisions", t => t.DivisionId, cascadeDelete: true)
+                .ForeignKey("dbo.LookUpDivisions", t => t.DivisionId, cascadeDelete: true)
                 .ForeignKey("dbo.ExpectedDates", t => t.ExpectedDateId, cascadeDelete: true)
                 .ForeignKey("dbo.ProgressTypes", t => t.ProgressTypeId, cascadeDelete: true)
                 .ForeignKey("dbo.ProjectTypes", t => t.ProjectTypeId, cascadeDelete: true)
@@ -46,13 +45,14 @@ namespace CEGIS_Project_ProgressApp.Migrations
                 .Index(t => t.ExpectedDateId);
             
             CreateTable(
-                "dbo.ExpectedDates",
+                "dbo.LookUpDivisions",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        Dates = c.String(maxLength: 8000, unicode: false),
+                        DivisionId = c.Int(nullable: false, identity: true),
+                        DivFullName = c.String(maxLength: 8000, unicode: false),
+                        DivShortName = c.String(maxLength: 8000, unicode: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.DivisionId);
             
             CreateTable(
                 "dbo.ProgressTypes",
@@ -172,7 +172,7 @@ namespace CEGIS_Project_ProgressApp.Migrations
             DropForeignKey("dbo.ProjectInfoes", "ProjectTypeId", "dbo.ProjectTypes");
             DropForeignKey("dbo.ProjectInfoes", "ProgressTypeId", "dbo.ProgressTypes");
             DropForeignKey("dbo.ProjectInfoes", "ExpectedDateId", "dbo.ExpectedDates");
-            DropForeignKey("dbo.ProjectInfoes", "DivisionId", "dbo.Divisions");
+            DropForeignKey("dbo.ProjectInfoes", "DivisionId", "dbo.LookUpDivisions");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
@@ -192,9 +192,9 @@ namespace CEGIS_Project_ProgressApp.Migrations
             DropTable("dbo.UpdateHistories");
             DropTable("dbo.ProjectTypes");
             DropTable("dbo.ProgressTypes");
-            DropTable("dbo.ExpectedDates");
+            DropTable("dbo.LookUpDivisions");
             DropTable("dbo.ProjectInfoes");
-            DropTable("dbo.Divisions");
+            DropTable("dbo.ExpectedDates");
         }
     }
 }

@@ -7,13 +7,13 @@ namespace CEGIS_Project_ProgressApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class version1 : IMigrationMetadata
+    public sealed partial class Version1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(version1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Version1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709250841422_version1"; }
+            get { return "201801020509266_Version1"; }
         }
         
         string IMigrationMetadata.Source

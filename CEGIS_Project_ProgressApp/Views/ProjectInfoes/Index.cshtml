@@ -23,7 +23,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Division.ShortName)
+                @Html.DisplayNameFor(model => model.Division.DivShortName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProjectName)
@@ -64,7 +64,7 @@
         {
             <tr id="show_@item.Id">
                 <td>
-                    @Html.DisplayFor(modelItem => item.Division.FullName)
+                    @Html.DisplayFor(modelItem => item.Division.DivFullName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProjectName)
